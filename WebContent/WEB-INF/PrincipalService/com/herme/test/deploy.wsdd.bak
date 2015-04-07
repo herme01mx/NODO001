@@ -1,0 +1,35 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PrincipalService WSDL service -->
+
+  <service name="Principal" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://test.herme.com"/>
+      <parameter name="wsdlServiceElement" value="PrincipalService"/>
+      <parameter name="schemaQualified" value="http://test.herme.com"/>
+      <parameter name="wsdlServicePort" value="Principal"/>
+      <parameter name="className" value="com.herme.test.PrincipalSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Principal"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="saludar" qname="operNS:saludar" xmlns:operNS="http://test.herme.com" returnQName="retNS:saludarReturn" xmlns:retNS="http://test.herme.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:x" xmlns:pns="http://test.herme.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="sumar" qname="operNS:sumar" xmlns:operNS="http://test.herme.com" returnQName="retNS:sumarReturn" xmlns:retNS="http://test.herme.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:n1" xmlns:pns="http://test.herme.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:n2" xmlns:pns="http://test.herme.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="mensaje" qname="operNS:mensaje" xmlns:operNS="http://test.herme.com" returnQName="retNS:mensajeReturn" xmlns:retNS="http://test.herme.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="sumar saludar mensaje"/>
+
+  </service>
+</deployment>

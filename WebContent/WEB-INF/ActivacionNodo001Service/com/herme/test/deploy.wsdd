@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ActivacionNodo001Service WSDL service -->
+
+  <service name="ActivacionNodo001" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://test.herme.com"/>
+      <parameter name="wsdlServiceElement" value="ActivacionNodo001Service"/>
+      <parameter name="schemaQualified" value="http://test.herme.com"/>
+      <parameter name="wsdlServicePort" value="ActivacionNodo001"/>
+      <parameter name="className" value="com.herme.test.ActivacionNodo001"/>
+      <parameter name="wsdlPortType" value="ActivacionNodo001"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://test.herme.com" xmlns:retNS="http://test.herme.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="create" qname="operNS:create" returnQName="retNS:createReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://test.herme.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:msisdn" type="tns:string"/>
+        <parameter xmlns:pns="http://test.herme.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:imsi" type="tns:string"/>
+        <parameter xmlns:pns="http://test.herme.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:iccid" type="tns:string"/>
+        <parameter xmlns:pns="http://test.herme.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:profile" type="tns:string"/>
+        <parameter xmlns:pns="http://test.herme.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:status" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="create"/>
+
+  </service>
+</deployment>
